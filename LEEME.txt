@@ -1,0 +1,38 @@
+TODO FÚTBOL — versión preparada para conectar datos reales
+
+IMPORTANTE
+- El sitio solo mostrará datos reales cuando lo publiques en Vercel y configures las claves API.
+- No pegues tus claves en el chat ni dentro de index.html.
+- Los planes, límites, disponibilidad de ligas y costos los controlan los proveedores y pueden cambiar.
+- Si sos menor, pedile a un adulto de confianza que te ayude con cuentas, términos del servicio o cualquier dato de pago.
+
+PROVEEDORES
+1) API-Football: https://www.api-football.com/
+   Crea una cuenta y copia tu API key desde el panel.
+2) GNews: https://gnews.io/
+   Crea una cuenta y copia tu API key. Comprueba límites y permisos de uso de artículos e imágenes.
+
+PUBLICACIÓN CON VERCEL
+1) Descarga y descomprime todo el ZIP.
+2) Crea una cuenta en https://github.com/ y un repositorio llamado todo-futbol.
+3) Sube TODOS los archivos y carpetas: index.html, api/football.js y api/news.js.
+4) En https://vercel.com/ importa el repositorio de GitHub y pulsa Deploy.
+5) En el proyecto de Vercel entra a Settings → Environment Variables.
+6) Añade:
+   API_FOOTBALL_KEY = tu clave de API-Football
+   GNEWS_API_KEY = tu clave de GNews
+   Marca Production (y Preview si quieres) y guarda.
+7) Ve a Deployments y vuelve a desplegar (Redeploy) para que tome las variables.
+8) Abre la URL que te da Vercel.
+
+QUÉ QUEDA CONECTADO
+- /api/football?type=fixtures devuelve partidos del día en la cobertura disponible.
+- /api/football?type=standings&league=128&season=2026 devuelve tabla de una liga si el proveedor ofrece esa temporada/cobertura.
+- /api/news devuelve titulares en español según la disponibilidad del plan de GNews.
+- El frontend intenta cargar partidos y noticias automáticamente. Si las claves faltan o la API falla, conserva los datos de demostración y muestra un aviso.
+
+NOTAS TÉCNICAS
+- La tabla de posiciones del diseño sigue siendo una tabla de ejemplo; este paquete incluye un endpoint de standings, pero falta conectarlo visualmente a la tabla.
+- El endpoint de fútbol trae los partidos de la fecha actual por defecto. La cobertura y el calendario dependen de la API.
+- Para conectar la tabla visual y elegir ligas/equipos desde controles, se puede ampliar después.
+- No publiques claves API en código visible al público.

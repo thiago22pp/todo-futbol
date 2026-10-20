@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07140f">
+<meta name="description" content="Todo Fútbol: resultados, partidos, equipos y noticias del mundo del fútbol.">
+<title>Todo Fútbol | Viví el fútbol</title>
+<style>
+:root{--bg:#07140f;--panel:#10231a;--panel2:#142b20;--text:#f4f7f4;--muted:#a5b6aa;--green:#9cff57;--line:#284536;--orange:#ffb45d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#163d28 0,transparent 36%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}.wrap{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:5;background:#07140fe8;backdrop-filter:blur(16px);border-bottom:1px solid #284536}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:900;letter-spacing:-.7px}.brand-mark{display:grid;place-items:center;background:var(--green);color:#0a1a0e;width:37px;height:37px;border-radius:12px;transform:rotate(-5deg)}.brand span em{font-style:normal;color:var(--green)}
+.navlinks{display:flex;gap:22px;color:var(--muted);font-size:.93rem}.navlinks a:hover{color:var(--green)}.navright{display:flex;gap:8px;align-items:center}.iconbtn,.menuBtn{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 12px}.menuBtn{display:none}
+.hero{padding:58px 0 35px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;animation:rise .65s ease both}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid #3d6848;background:#11291b;border-radius:99px;color:var(--green);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}.pulse{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 5px #9cff571a}
+h1{font-size:clamp(2.7rem,6vw,5.4rem);line-height:.98;letter-spacing:-.065em;margin:20px 0 16px;max-width:700px}h1 span{color:var(--green)}.hero p{color:var(--muted);font-size:1.08rem;line-height:1.65;max-width:550px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.primary,.secondary{border:0;border-radius:13px;padding:13px 18px;font-weight:850;transition:transform .2s,filter .2s}.primary{background:var(--green);color:#0a1a0e}.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.primary:hover,.secondary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.hero-card{position:relative;overflow:hidden;min-height:320px;border:1px solid #376145;border-radius:28px;background:linear-gradient(140deg,#214c2e,#0c1d14 65%);padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 25px 90px #0004}.hero-card:before{content:"";position:absolute;width:260px;height:260px;border:1px solid #9cff572a;border-radius:50%;right:-65px;top:-85px;box-shadow:0 0 0 30px #9cff5708,0 0 0 60px #9cff5706}.hero-card>*{position:relative}.card-top{display:flex;justify-content:space-between;align-items:center;color:#c7ddcc;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}.demo-tag{background:#ffffff12;border:1px solid #ffffff22;padding:6px 9px;border-radius:8px}.score-big{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 0}.club{text-align:center;flex:1}.crest{width:72px;height:72px;margin:auto auto 10px;display:grid;place-items:center;border-radius:22px;background:#e9f7e7;color:#183922;font-size:1.8rem;font-weight:1000;box-shadow:0 10px 25px #0002}.crest.blue{background:#c7dcff;color:#13325f}.club strong{display:block;font-size:.94rem}.score{font-size:2.2rem;font-weight:950;letter-spacing:-2px}.score small{font-size:.9rem;color:var(--muted);letter-spacing:0}.match-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ffffff20;padding-top:15px;color:#c0d4c5;font-size:.8rem}.match-foot b{color:var(--green)}
+.section{padding:35px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px}.section-head h2{margin:0;font-size:clamp(1.55rem,3vw,2.2rem);letter-spacing:-1px}.section-head p{margin:7px 0 0;color:var(--muted);font-size:.92rem}.label{color:var(--green);font-size:.76rem;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:8px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 14px;border-radius:10px}.tab.active{background:var(--green);color:#0a1a0e;border-color:var(--green);font-weight:900}
+.match-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.match-card,.news-card,.standings{background:linear-gradient(145deg,#11271c,#0c1c14);border:1px solid var(--line);border-radius:18px;padding:17px;transition:transform .22s,border-color .22s}.match-card:hover,.news-card:hover{transform:translateY(-4px);border-color:#6f9f65}.league{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:.78rem;margin-bottom:18px}.league b{color:var(--green)}.teams{display:flex;align-items:center;justify-content:space-between;gap:8px}.team{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.9rem}.mini-crest{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#e5f1e2;color:#17331e;font-weight:1000}.mini-crest.blue{background:#c7dcff;color:#17335a}.versus{color:var(--muted);font-size:.78rem}.match-result{font-size:1.25rem;font-weight:950;white-space:nowrap}.match-meta{border-top:1px solid var(--line);margin-top:16px;padding-top:12px;display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem}.status{color:var(--orange);font-weight:800}.demo-note{color:var(--muted);font-size:.78rem;margin-top:12px}
+.content-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.standings{padding:0;overflow:hidden}.table-title{padding:18px 18px 8px;font-weight:900}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.86rem}th,td{text-align:left;padding:12px 15px;border-bottom:1px solid #284536}th{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.7px}td:last-child,th:last-child{text-align:right}.pos{color:var(--green);font-weight:900}.club-cell{font-weight:800;white-space:nowrap}.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.news-card{padding:0;overflow:hidden}.news-art{height:140px;display:grid;place-items:center;font-size:3.4rem;background:radial-gradient(circle at 65% 25%,#3b7140,#11251a 65%);position:relative}.news-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0c1c14,transparent 75%)}.news-body{padding:16px}.news-body small{color:var(--green);font-weight:850;text-transform:uppercase;letter-spacing:.8px}.news-body h3{font-size:1.03rem;line-height:1.35;margin:9px 0}.news-body p{font-size:.84rem;color:var(--muted);line-height:1.5;margin:0}.tools{display:grid;grid-template-columns:1fr 1fr;gap:14px}.tool-card{padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}.tool-card h3{margin:0 0 8px}.tool-card p{color:var(--muted);font-size:.9rem;line-height:1.5}.searchbox{display:flex;gap:8px;margin-top:14px}.searchbox input{min-width:0;flex:1;background:#07140f;border:1px solid var(--line);border-radius:11px;color:var(--text);padding:12px}.search-result{margin-top:12px;color:var(--green);font-size:.9rem;min-height:20px}
+footer{border-top:1px solid var(--line);margin-top:45px;padding:28px 0;color:var(--muted);font-size:.83rem}.footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.foot-brand{font-weight:900;color:var(--text)}
+body.light{--bg:#f2f7f1;--panel:#fff;--panel2:#e5efe5;--text:#102318;--muted:#53675a;--line:#cbdccc;background:radial-gradient(ellipse at 80% 0%,#d8f0d9 0,transparent 36%),var(--bg)}body.light header{background:#f2f7f1e8}body.light .hero-card{color:#f4f7f4}body.light .searchbox input{background:white;color:#102318}
+@keyframes rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}.hero-card{animation:float 5s ease-in-out infinite}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:38px}.hero-card{min-height:290px}.match-grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.news-grid{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.navlinks.open{display:flex;position:absolute;left:4%;right:4%;top:65px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:15px;flex-direction:column;gap:16px}.menuBtn{display:block}}
+@media(max-width:520px){.nav{height:64px}.brand{font-size:1.05rem}.navright .iconbtn{padding:9px}.hero{padding-top:30px}.hero-card{padding:18px;min-height:270px}.crest{width:58px;height:58px;font-size:1.5rem}.score{font-size:1.8rem}.match-grid,.news-grid,.tools{grid-template-columns:1fr}.section{padding:27px 0}.section-head{align-items:start;flex-direction:column}.match-card{padding:15px}.team{font-size:.82rem}.news-art{height:125px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="Todo Fútbol, inicio"><span class="brand-mark">⚽</span><span>TODO <em>FÚTBOL</em></span></a>
+    <nav class="navlinks" id="navlinks"><a href="#partidos">Partidos</a><a href="#tabla">Posiciones</a><a href="#noticias">Noticias</a><a href="#herramientas">Herramientas</a></nav>
+    <div class="navright"><button class="iconbtn" id="themeBtn" aria-label="Cambiar tema">☼</button><button class="menuBtn" id="menuBtn" aria-label="Abrir menú">☰</button></div>
+  </div>
+</header>
+<main class="wrap" id="inicio">
+  <section class="hero">
+    <div><div class="eyebrow"><span class="pulse"></span> La pasión nunca descansa</div>
+      <h1>Todo lo que<br>amás del <span>fútbol.</span></h1>
+      <p>Partidos, resultados, posiciones y noticias. Todo el mundo del fútbol, en un solo lugar y desde cualquier pantalla.</p>
+      <div class="actions"><a class="primary" href="#partidos">Ver partidos <span aria-hidden="true">↗</span></a><a class="secondary" href="#noticias">Últimas noticias</a></div>
+    </div>
+    <div class="hero-card" aria-label="Partido destacado de demostración">
+      <div class="card-top"><span>⭐ Partido destacado</span><span class="demo-tag">MUESTRA</span></div>
+      <div class="score-big"><div class="club"><div class="crest">🔵</div><strong>Equipo Azul</strong></div><div class="score">2 <small>:</small> 1</div><div class="club"><div class="crest blue">🟡</div><strong>Equipo Dorado</strong></div></div>
+      <div class="match-foot"><span>🏆 Liga de ejemplo</span><span>Resultado ilustrativo <b>●</b></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="partidos">
+    <div class="section-head"><div><div class="label">Calendario y marcadores</div><h2>Partidos destacados</h2><p>Explorá la lista por estado. Los datos de esta primera versión son de ejemplo.</p></div></div>
+    <div class="tabs" role="tablist" aria-label="Filtrar partidos"><button class="tab active" data-filter="todos">Todos</button><button class="tab" data-filter="hoy">Hoy</button><button class="tab" data-filter="proximos">Próximos</button><button class="tab" data-filter="finalizados">Finalizados</button></div>
+    <div class="match-grid" id="matchGrid">
+      <article class="match-card" data-state="finalizados" data-search="argentina brasil selecciones mundial"><div class="league"><span>🌎 Selecciones</span><b>FINAL</b></div><div class="teams"><div class="team"><span class="mini-crest">🇦🇷</span>Argentina</div><div class="match-result">2 - 1</div><div class="team"><span class="mini-crest blue">🇧🇷</span>Brasil</div></div><div class="match-meta"><span>Partido de ejemplo</span><span>Finalizado</span></div></article>
+      <article class="match-card" data-state="proximos" data-search="boca river liga argentina"><div class="league"><span>🇦🇷 Liga argentina</span><b>PRÓXIMO</b></div><div class="teams"><div class="team"><span class="mini-crest">🔵</span>Boca</div><div class="versus">VS</div><div class="team"><span class="mini-crest blue">🔴</span>River</div></div><div class="match-meta"><span>Fecha por confirmar</span><span class="status">Próximo</span></div></article>
+      <article class="match-card" data-state="hoy" data-search="real madrid barcelona españa liga"><div class="league"><span>🇪🇸 Liga española</span><b>HOY*</b></div><div class="teams"><div class="team"><span class="mini-crest">⚪</span>Real Madrid</div><div class="versus">VS</div><div class="team"><span class="mini-crest blue">🔴</span>Barcelona</div></div><div class="match-meta"><span>*Etiqueta de demostración</span><span class="status">Programado</span></div></article>
+    </div><p class="demo-note" id="dataStatus">⏳ Conectando con datos deportivos… Si todavía no configuraste las claves, se mostrarán ejemplos.</p>
+  </section>
+
+  <section class="section" id="tabla">
+    <div class="section-head"><div><div class="label">La clasificación</div><h2>Tabla de posiciones</h2><p>Ejemplo interactivo de una tabla de liga.</p></div></div>
+    <div class="content-grid">
+      <div class="standings"><div class="table-title">🏆 Liga de ejemplo · Temporada</div><div class="table-wrap"><table><thead><tr><th>#</th><th>Equipo</th><th>PJ</th><th>DG</th><th>Pts</th></tr></thead><tbody><tr><td class="pos">1</td><td class="club-cell">🔵 Equipo Azul</td><td>8</td><td>+10</td><td><b>20</b></td></tr><tr><td class="pos">2</td><td class="club-cell">🔴 Equipo Rojo</td><td>8</td><td>+7</td><td><b>18</b></td></tr><tr><td>3</td><td class="club-cell">🟡 Equipo Dorado</td><td>8</td><td>+3</td><td><b>15</b></td></tr><tr><td>4</td><td class="club-cell">⚫ Equipo Negro</td><td>8</td><td>-2</td><td><b>10</b></td></tr></tbody></table></div></div>
+      <div class="tool-card"><div class="label">Cómo se calcula</div><h3>Sumá los puntos</h3><p>Victoria: 3 puntos. Empate: 1 punto por equipo. Derrota: 0 puntos. La diferencia de goles es goles a favor menos goles en contra.</p><p>En una versión conectada, esta tabla se actualizaría automáticamente con los resultados reales.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="noticias">
+    <div class="section-head"><div><div class="label">En el mundo del fútbol</div><h2>Noticias y curiosidades</h2><p>Bloques preparados para publicar artículos propios o conectar noticias verificadas.</p></div></div>
+    <p class="demo-note" id="newsStatus">⏳ Cargando noticias…</p><div class="news-grid" id="newsGrid">
+      <article class="news-card"><div class="news-art">🏟️</div><div class="news-body"><small>ANÁLISIS</small><h3>Qué hace especial a una gran hinchada</h3><p>La identidad, los cantos y las tradiciones forman parte de la cultura de cada club.</p></div></article>
+      <article class="news-card"><div class="news-art">📊</div><div class="news-body"><small>ESTADÍSTICAS</small><h3>Más que goles: números que cuentan historias</h3><p>Posesión, pases y ocasiones ayudan a entender cómo se juega un partido.</p></div></article>
+      <article class="news-card"><div class="news-art">🌍</div><div class="news-body"><small>HISTORIA</small><h3>El fútbol une a personas de todo el mundo</h3><p>Un deporte con millones de seguidores y estilos distintos en cada país.</p></div></article>
+    </div>
+  </section>
+
+  <section class="section" id="herramientas">
+    <div class="section-head"><div><div class="label">Probá las herramientas</div><h2>Tu fútbol, a tu manera</h2><p>Funciones sencillas que ya podés probar en esta versión.</p></div></div>
+    <div class="tools">
+      <div class="tool-card"><h3>🔎 Buscar equipo o partido</h3><p>Escribí un club o una selección para encontrar coincidencias en las tarjetas de ejemplo.</p><form class="searchbox" id="searchForm"><input id="searchInput" placeholder="Ej.: Boca, Argentina..." aria-label="Buscar equipo"><button class="primary" type="submit">Buscar</button></form><div class="search-result" id="searchResult" aria-live="polite"></div></div>
+      <div class="tool-card"><h3>💚 Tu equipo favorito</h3><p>Elegí tu equipo para resaltarlo en esta sesión. Esta selección no se guarda en un servidor.</p><div class="searchbox"><input id="favInput" placeholder="Ej.: Boca Juniors" aria-label="Equipo favorito"><button class="primary" id="favBtn" type="button">Guardar</button></div><div class="search-result" id="favResult" aria-live="polite">Todavía no elegiste uno.</div></div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap footer-row"><span class="foot-brand">⚽ TODO FÚTBOL</span><span>Hecho para quienes viven el fútbol.</span><span>Versión inicial · Datos de ejemplo</span></div></footer>
+<script>
+const tabs=[...document.querySelectorAll('.tab')], cards=[...document.querySelectorAll('.match-card')];
+tabs.forEach(tab=>tab.addEventListener('click',()=>{tabs.forEach(t=>t.classList.toggle('active',t===tab));cards.forEach(card=>{card.hidden=tab.dataset.filter!=='todos'&&card.dataset.state!==tab.dataset.filter;});}));
+document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('searchInput').value.trim().toLocaleLowerCase('es');let count=0;cards.forEach(c=>{const match=!q||c.dataset.search.includes(q)||c.innerText.toLocaleLowerCase('es').includes(q);c.hidden=!match;count+=match?1:0;});tabs.forEach(t=>t.classList.toggle('active',t.dataset.filter==='todos'));document.getElementById('searchResult').textContent=q?(count?`Encontré ${count} coincidencia(s).`:'No encontré coincidencias en los partidos cargados.'):'Mostrando todos los partidos.';document.getElementById('partidos').scrollIntoView({behavior:'smooth'});});
+document.getElementById('favBtn').addEventListener('click',()=>{const name=document.getElementById('favInput').value.trim();document.getElementById('favResult').textContent=name?`💚 Tu equipo favorito es ${name}. ¡Aguante ${name}!`:'Escribí el nombre de un equipo primero.';});
+document.getElementById('themeBtn').addEventListener('click',()=>{document.body.classList.toggle('light');document.getElementById('themeBtn').textContent=document.body.classList.contains('light')?'☾':'☼';});
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
+document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
+
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function logo(team){return team?.logo ? `<img src="${esc(team.logo)}" alt="" style="width:30px;height:30px;object-fit:contain">` : '<span class="mini-crest">⚽</span>';}
+function fmtDate(value){if(!value)return 'Horario por confirmar';try{return new Intl.DateTimeFormat('es-AR',{dateStyle:'medium',timeStyle:'short'}).format(new Date(value));}catch{return value;}}
+async function loadFixtures(){
+ const status=document.getElementById('dataStatus');
+ try{
+  const r=await fetch('/api/football?type=fixtures');
+  const data=await r.json();
+  if(!r.ok) throw new Error(data.error||'No se pudieron cargar partidos');
+  if(!Array.isArray(data.response)||!data.response.length) throw new Error('La API no devolvió partidos para hoy.');
+  const grid=document.getElementById('matchGrid');
+  grid.innerHTML=data.response.slice(0,12).map(m=>{
+   const h=m.teams?.home||{}, a=m.teams?.away||{}, g=m.goals||{}, st=m.fixture?.status||{};
+   const finished=['FT','AET','PEN'].includes(st.short);
+   const state=finished?'finalizados':(st.short==='NS'?'proximos':'hoy');
+   const homeScore=g.home==null?'—':g.home, awayScore=g.away==null?'—':g.away;
+   return `<article class="match-card" data-state="${state}" data-search="${esc((h.name+' '+a.name+' '+(m.league?.name||'')).toLocaleLowerCase('es'))}"><div class="league"><span>${esc(m.league?.country||'Fútbol')} · ${esc(m.league?.name||'Partido')}</span><b>${finished?'FINAL':esc(st.short||'PARTIDO')}</b></div><div class="teams"><div class="team">${logo(h)}<span>${esc(h.name)}</span></div><div class="match-result">${homeScore} - ${awayScore}</div><div class="team">${logo(a)}<span>${esc(a.name)}</span></div></div><div class="match-meta"><span>${esc(fmtDate(m.fixture?.date))}</span><span>${esc(st.long||'Programado')}</span></div></article>`;
+  }).join('');
+  status.textContent='✅ Partidos cargados desde la API deportiva. La disponibilidad depende de la cobertura y el plan de tu proveedor.';
+  tabs.forEach(t=>t.classList.toggle('active',t.dataset.filter==='todos'));
+  tabs.forEach(tab=>tab.onclick=()=>{tabs.forEach(t=>t.classList.toggle('active',t===tab));[...grid.querySelectorAll('.match-card')].forEach(card=>card.hidden=tab.dataset.filter!=='todos'&&card.dataset.state!==tab.dataset.filter);});
+ }catch(err){status.textContent='ℹ️ Se muestran partidos de ejemplo. Para activar datos reales, seguí el archivo LEEME.';}
+}
+async function loadNews(){
+ const status=document.getElementById('newsStatus');
+ try{
+  const r=await fetch('/api/news');
+  const data=await r.json();
+  if(!r.ok) throw new Error(data.error||'No se pudieron cargar noticias');
+  if(!Array.isArray(data.articles)||!data.articles.length) throw new Error('No hay noticias disponibles');
+  document.getElementById('newsGrid').innerHTML=data.articles.slice(0,6).map(a=>`<a class="news-card" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><div class="news-art">${a.image?`<img src="${esc(a.image)}" alt="" style="width:100%;height:100%;object-fit:cover">`:'⚽'}</div><div class="news-body"><small>NOTICIAS · ${esc(a.source||'Fuente')}</small><h3>${esc(a.title)}</h3><p>${esc(a.description||'Abrí el artículo para leer la noticia completa.')}</p></div></a>`).join('');
+  status.textContent='Noticias recientes · Abrí cada tarjeta para leer la publicación original.';
+ }catch(err){status.textContent='ℹ️ Las noticias de ejemplo siguen visibles. Configurá GNews siguiendo las instrucciones para cargar noticias recientes.';}
+}
+loadFixtures(); loadNews();
+</script>
+</body>
+</html>
